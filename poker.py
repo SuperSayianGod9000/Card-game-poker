@@ -20,6 +20,9 @@ while(True):
     f3=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
     preR=[random.randrange(1,15,1),random.randrange(1,5,1)]
     R=[random.randrange(1,15,1),random.randrange(1,5,1)]
+    x1=p1[:2]
+    x2=p2[:2]
+    x3=p3[:2]
     
 
 
@@ -83,11 +86,18 @@ while(True):
 
         repetition(p1,p2,p3,f3)
 
-    def winners(winner,flag1,flag2,flag3):
+    def winners(winner,flag1,flag2,flag3,status1,status2,status3,x1,x2,x3):
+        print(x1)
+        print(x2)
+        print(x3)
+        highcard=[]
+        print(winner)
         winner.sort()
-        w=winner.pop(0)
+        if(len(winner)>0):
+            w=winner[0]
         res2=input("do you want to check result")
         if(res2=='yes'):
+          if(winner.count(w)==1 and len(winner)>0):
             if(w==1):
                 if(flag1==1):
                     print("p1 is winner")
@@ -169,6 +179,82 @@ while(True):
                     print("p3 is winner")
 
             
+               
+
+          elif(winner.count(w)>1 and len(winner)>0):
+                if((w==2 or w==6) or w==8):
+                    if(status1==1 and flag1==w):
+                       highcard.append(x1[0][0])
+
+                    if(status1==2 and flag1==w):
+                        highcard.append(x1[1][0])
+
+                    if(status2==1 and flag2==w):
+                       highcard.append(x2[0][0])
+
+                    if(status2==2 and flag2==w):
+                        highcard.append(x2[1][0])
+
+                    if(status3==1 and flag3==w):
+                       highcard.append(x3[0][0])
+
+                    if(status3==2 and flag3==w):
+                        highcard.append(x3[1][0])
+                else:
+                    if(winner.count(w)==3):
+                        for i in range(2):
+                            highcard.append(x1[i][0])
+                            highcard.append(x2[i][0])
+                            highcard.append(x3[i][0])
+                    elif(winner.count(w)==2 and flag3!=w):
+                        for i in range(2):
+                            highcard.append(x1[i][0])
+                            highcard.append(x2[i][0])
+
+                    elif(winner.count(w)==2 and flag2!=w):
+                        for i in range(2):
+                            highcard.append(x1[i][0])
+                            highcard.append(x3[i][0])
+
+                    elif(winner.count(w)==2 and flag1!=w):
+                        for i in range(2):
+                            highcard.append(x3[i][0])
+                            highcard.append(x2[i][0])
+                            
+                            
+
+
+                print(highcard)
+                high=max(highcard)
+                if(x1[0][0]==high or x1[1][0]==high):
+                    print("p1 is winner")
+
+                elif(x2[0][0]==high or x2[1][0]==high):
+                    print("p2 is winner")
+
+                elif(x3[0][0]==high or x3[1][0]==high):
+                     print("p3 is winner")
+
+                elif(len(winner)==0):
+                     for i in range(2):
+                            highcard.append(x1[i][0])
+                            highcard.append(x2[i][0])
+                            highcard.append(x3[i][0])
+
+                     high=max(highcard)
+                     if(x1[0][0]==high or x1[1][0]==high):
+                        print("p1 is winner")
+
+                     elif(x2[0][0]==high or x2[1][0]==high):
+                        print("p2 is winner")
+
+                     elif(x3[0][0]==high or x3[1][0]==high):
+                        print("p3 is winner")
+               
+
+                
+                
+            
 
             
                 
@@ -178,7 +264,7 @@ while(True):
                 
 
 
-    def sequence(p1,p2,p3,rep1,rep2,rep3,f3,winner,flag1,flag2,flag3):
+    def sequence(p1,p2,p3,rep1,rep2,rep3,f3,winner,flag1,flag2,flag3,status1,status2,status3):
         color1=[]
         color2=[]
         color3=[]
@@ -228,6 +314,7 @@ while(True):
         if(res1=='yes'):
                 if(len(check1)>=5):
                     print("p1 has straight")
+                    
                     st=5
                     flag1=5
                     winner.append(st)
@@ -285,7 +372,7 @@ while(True):
 
                 
 
-                winners(winner,flag1,flag2,flag3)
+                winners(winner,flag1,flag2,flag3,status1,status2,status3,x1,x2,x3)
     
     
     
@@ -303,6 +390,9 @@ while(True):
         tak=0
         tp=0
         thak=0
+        status1=0
+        status2=0
+        status3=0
         
         
         for i in range(5):
@@ -318,38 +408,37 @@ while(True):
         res=input("check repertition?")
         if(res=='yes'):
           #if(rep1[0]!=rep1[1] and rep2[0]!=rep2[1] and rep3[0]!=rep3[1]):
-            if((rep1.count(rep1[0])==2 and rep1.count(rep1[1])==3) or (rep1.count(rep1[0])==3 and rep1.count(rep1[1])==2)):
-                print("p1 has full house")
-                fh=3
-                flag1=3
-                winner.append(fh)
-
-            if((rep1.count(rep2[0])==2 and rep2.count(rep2[1])==3) or (rep2.count(rep2[0])==3 and rep2.count(rep2[1])==2)):
-                print("p2 has full house")
-                fh=3
-                flag2=3
-                winner.append(fh)
-
-
-            if((rep1.count(rep3[0])==2 and rep3.count(rep3[1])==3) or (rep3.count(rep3[0])==3 and rep3.count(rep3[1])==2)):
-                print("p3 has full house")
-                fh=3
-                flag3=3
-                winner.append(fh)
+            
 
             if((rep1.count(rep1[0])==2 or rep1.count(rep1[1])==2)):
+                if(rep1.count(rep1[0])==2):
+                    status1=1
+                elif(rep1.count(rep1[1])==2):
+                    status1=2
+                
                 print("p1 has two of a kind ")
                 tak=8
                 flag1=8
                 winner.append(tak)
 
             if((rep2.count(rep2[0])==2 or rep2.count(rep2[1])==2)):
+                if(rep2.count(rep2[0])==2):
+                    status2=1
+                elif(rep2.count(rep2[1])==2):
+                    status2=2
+                
+                
                 print("p2 has two of a kind ")
                 tak=8
+
                 flag2=8
                 winner.append(tak)
 
             if((rep3.count(rep3[0])==2 or rep3.count(rep3[1])==2)):
+                if(rep3.count(rep3[0])==2):
+                    status3=1
+                elif(rep3.count(rep3[1])==2):
+                    status3=2
                 print("p3 has two of a kind ")
                 tak=8
                 flag3=8
@@ -382,36 +471,79 @@ while(True):
 
 
             if((rep1.count(rep1[0])==3 or rep1.count(rep1[1])==3)):
+                if(rep1.count(rep1[0])==3):
+                    status1=1
+                elif(rep1.count(rep1[1])==3):
+                    status1=2
                 print("p1 has three of a kind ")
                 thak=6
                 flag1=6
-                winner.append(tak)
+                winner.append(thak)
 
             if((rep2.count(rep2[0])==3 or rep2.count(rep2[1])==3)):
+                if(rep2.count(rep2[0])==3):
+                    status2=1
+                elif(rep2.count(rep2[1])==3):
+                    status2=2
                 print("p2 has three of a kind ")
                 thak=6
                 flag2=6
-                winner.append(tak)
+                winner.append(thak)
 
             if((rep3.count(rep3[0])==3 or rep3.count(rep3[1])==3)):
+                if(rep3.count(rep2[0])==3):
+                    status3=1
+                elif(rep3.count(rep3[1])==3):
+                    status3=2
                 print("p3 has three of a kind ")
                 thak=6
                 flag3=6
-                winner.append(tak)
+                winner.append(thak)
+
+            if((rep1.count(rep1[0])==2 and rep1.count(rep1[1])==3) or (rep1.count(rep1[0])==3 and rep1.count(rep1[1])==2)):
+                print("p1 has full house")
+                fh=3
+                flag1=3
+                winner.append(fh)
+
+            if((rep1.count(rep2[0])==2 and rep2.count(rep2[1])==3) or (rep2.count(rep2[0])==3 and rep2.count(rep2[1])==2)):
+                print("p2 has full house")
+                fh=3
+                flag2=3
+                winner.append(fh)
+
+
+            if((rep1.count(rep3[0])==2 and rep3.count(rep3[1])==3) or (rep3.count(rep3[0])==3 and rep3.count(rep3[1])==2)):
+                print("p3 has full house")
+                fh=3
+                flag3=3
+                winner.append(fh)
 
             if(rep1.count(rep1[0])==4 or rep1.count(rep1[1])==4):
+                if(rep1.count(rep1[0])==4):
+                    status1=1
+                elif(rep1.count(rep1[1])==2):
+                    status1=2
                 print ("p1 has four of a kind")
                 fak=2
                 flag1=2
                 winner.append(fak)
 
             if(rep2.count(rep2[0])==4 or rep2.count(rep2[1])==4):
+                if(rep2.count(rep2[0])==4):
+                    status2=1
+                elif(rep2.count(rep2[1])==4):
+                    status2=2
                 print ("p2 has four of a kind")
                 fak=2
                 flag2=2
                 winner.append(fak)
 
             if(rep3.count(rep3[0])==4 or rep3.count(rep3[1])==4):
+                if(rep3.count(rep3[0])==4):
+                    status3=1
+                elif(rep3.count(rep3[1])==4):
+                    status3=2
                 print ("p3 has four of a kind")
                 fak=2
                 flag3=2
@@ -419,7 +551,7 @@ while(True):
 
 
 
-            sequence(p1,p2,p3,rep1,rep2,rep3,f3,winner,flag1,flag2,flag3)
+            sequence(p1,p2,p3,rep1,rep2,rep3,f3,winner,flag1,flag2,flag3,status1,status2,status3)
 
         
          
