@@ -27,7 +27,7 @@ while(True):
     def check(p,b,n):
      z=0
      for i in range(n):
-            if( b.count(b[i])>0):
+            if( b.count(b[i])>1):
                 z=1
                 b[i]=[random.randrange(2,15,1),random.randrange(1,5,1)]
 
@@ -128,13 +128,13 @@ while(True):
 
      elif(x==4):
          print(p1c)
-         print(p1)
+         #print(p1)
          show(p1,2)
          print(p2c)
-         print(p2)
+         #print(p2)
          show(p2,2)
          print(p3c)
-         print(p3)
+         #print(p3)
          show(p3,2) 
          
 
@@ -149,7 +149,7 @@ while(True):
             check(p1,f3,3)
             check(p2,f3,3)
             check(p3,f3,3)
-            print(f3)
+            #print(f3)
             show(f3,3)
         if(kcount<=3 and kcount!=1):
             preriver(f3,kcount)
@@ -161,12 +161,13 @@ while(True):
     def preriver(f3,kcount):
         #preR=[random.randrange(1,15,1),random.randrange(1,5,1)]
         f3.append(preR)
+        show(f3,4)
         if(kcount==2):
             print("the turn")
             check(p1,f3,4)
             check(p2,f3,4)
             check(p3,f3,4)
-            print(f3)
+            #print(f3)
             show(f3,4)
         if(kcount==3):
             river(f3,kcount,preR)
@@ -177,16 +178,13 @@ while(True):
     def river(f3,kcount,preR):
         #R=[random.randrange(1,15,1),random.randrange(1,5,1)]
         f3.append(R)
-        check(p1,f3,3)
-        check(p2,f3,3)
-        check(p3,f3,3)
         if(kcount==3):
             f3.pop(4)
             print("the river")
             check(p1,f3,5)
             check(p2,f3,5)
             check(p3,f3,5)
-            print(f3)
+            #print(f3)
             show(f3,5)
 
         repetition(p1,p2,p3,f3)
