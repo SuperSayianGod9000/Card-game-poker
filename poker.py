@@ -152,16 +152,24 @@ while(True):
             #print(f3)
             show(f3,3)
         if(kcount<=3 and kcount!=1):
-            preriver(f3,kcount)
+            preriver(f3,kcount,preR)
         
         
         
         
 
-    def preriver(f3,kcount):
+    def preriver(f3,kcount,preR):
         #preR=[random.randrange(1,15,1),random.randrange(1,5,1)]
+        while(True):
+            if(preR in f3):
+                preR=[random.randrange(2,15,1),random.randrange(1,5,1)]
+
+            else:
+                break
+            
+        
         f3.append(preR)
-        show(f3,4)
+        
         if(kcount==2):
             print("the turn")
             check(p1,f3,4)
@@ -170,13 +178,19 @@ while(True):
             #print(f3)
             show(f3,4)
         if(kcount==3):
-            river(f3,kcount,preR)
+            river(f3,kcount,preR,R)
         
         
         
 
-    def river(f3,kcount,preR):
+    def river(f3,kcount,preR,R):
         #R=[random.randrange(1,15,1),random.randrange(1,5,1)]
+        while(True):
+            if(R in f3):
+                R=[random.randrange(2,15,1),random.randrange(1,5,1)]
+
+            else:
+                break
         f3.append(R)
         if(kcount==3):
             f3.pop(4)
