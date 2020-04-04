@@ -30,7 +30,7 @@ while(True):
            for i in range(n):
               if(p[0]==b[i] or p[1]==b[i]):
                  b[i]= [random.randrange(2,15,1),random.randrange(1,5,1)]
-                 check()
+                 check(p,b,n)
 
         else:
             break
