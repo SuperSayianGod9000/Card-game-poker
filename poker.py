@@ -14,41 +14,116 @@ while(True):
     p3c=p3c-1
     
 
-    p1=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
-    p2=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
-    p3=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
-    f3=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
-    preR=[random.randrange(1,15,1),random.randrange(1,5,1)]
-    R=[random.randrange(1,15,1),random.randrange(1,5,1)]
+    p1=[[random.randrange(2,15,1),random.randrange(1,5,1)],[random.randrange(2,15,1),random.randrange(1,5,1)]]
+    p2=[[random.randrange(2,15,1),random.randrange(1,5,1)],[random.randrange(2,15,1),random.randrange(1,5,1)]]
+    p3=[[random.randrange(2,15,1),random.randrange(1,5,1)],[random.randrange(2,15,1),random.randrange(1,5,1)]]
+    f3=[[random.randrange(2,15,1),random.randrange(1,5,1)],[random.randrange(2,15,1),random.randrange(1,5,1)],[random.randrange(2,15,1),random.randrange(1,5,1)]]
+    preR=[random.randrange(2,15,1),random.randrange(1,5,1)]
+    R=[random.randrange(2,15,1),random.randrange(1,5,1)]
     x1=p1[:2]
     x2=p2[:2]
     x3=p3[:2]
+
+    def check(p,b,n):
+     while(True):
+        if((p[0] in b) or (p[1] in b)):
+           for i in range(n):
+              if(p[0]==b[i] or p[1]==b[i]):
+                 b[i]= [random.randrange(2,15,1),random.randrange(1,5,1)]
+                 check()
+
+        else:
+            break
+             
+
+    def show(sp,n):
+        #sp=[[1,3],[2,4]]
+        y=[[0,0],[0,0],[0,0],[0,0],[0,0]]
+        for i in range(n):
+            y[i][0]=sp[i][0]
+            y[i][0]=sp[i][0]
+        for i in range(1,5):
+            for j in range(n):
+                if(sp[j][1]==i):
+                        if(i==1):
+                                y[j][1]='clubs'
+
+                        if(i==2):
+                                y[j][1]='diamonds'
+
+
+                        if(i==3):
+                                y[j][1]='hearts'
+
+                        if(i==4):
+                                y[j][1]='spade'
+
+        for i in range(n):
+            if(sp[i][0]==11):
+                y[i][0]='J'
+
+            if(sp[i][0]==12):
+                y[i][0]='Q'
+
+            if(sp[i][0]==13):
+                y[i][0]='K'
+
+            if(sp[i][0]==14):
+                y[i][0]='A'
+
+            
+
+            
+
+            
+
+
+        print(y[:n])
+
+
+
+
+                        
+        
+        
+        
+        
+
     
 
 
     def status(p1c,p2c,p3c):
         
      x=int(input("Enter player number for viewing status"))
+     check(p1,p2,2)
+     check(p1,p3,2)
+     check(p2,p1,2)
+     check(p2,p3,2)
+     check(p3,p1,2)
+     check(p3,p2,2)
 
      if(x==1):
         print(p1c)
-        print(p1)
+        show(p1,2)
 
      elif(x==2):
         print(p2c)
-        print(p2)
+        show(p2,2)
 
      elif(x==3):
         print(p3c)
-        print(p3)
+        show(p3,n)
 
      elif(x==4):
          print(p1c)
          print(p1)
+         show(p1,2)
          print(p2c)
          print(p2)
+         show(p2,2)
          print(p3c)
-         print(p3) 
+         print(p3)
+         show(p3,2) 
          
 
      
@@ -58,7 +133,12 @@ while(True):
     def first3(p1,p2,p3,kcount):
         #f3=[[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)],[random.randrange(1,15,1),random.randrange(1,5,1)]]
         if(kcount==1):
+            print("the flop")
+            check(p1,f3,3)
+            check(p2,f3,3)
+            check(p3,f3,3)
             print(f3)
+            show(f3,3)
         if(kcount<=3 and kcount!=1):
             preriver(f3,kcount)
         
@@ -70,7 +150,12 @@ while(True):
         #preR=[random.randrange(1,15,1),random.randrange(1,5,1)]
         f3.append(preR)
         if(kcount==2):
+            print("the turn")
+            check(p1,f3,4)
+            check(p2,f3,4)
+            check(p3,f3,4)
             print(f3)
+            show(f3,4)
         if(kcount==3):
             river(f3,kcount,preR)
         
@@ -80,19 +165,28 @@ while(True):
     def river(f3,kcount,preR):
         #R=[random.randrange(1,15,1),random.randrange(1,5,1)]
         f3.append(R)
+        check(p1,f3,3)
+        check(p2,f3,3)
+        check(p3,f3,3)
         if(kcount==3):
             f3.pop(4)
+            print("the river")
+            check(p1,f3,5)
+            check(p2,f3,5)
+            check(p3,f3,5)
             print(f3)
+            show(f3,5)
 
         repetition(p1,p2,p3,f3)
 
     def winners(winner,flag1,flag2,flag3,status1,status2,status3,x1,x2,x3):
-        print(x1)
-        print(x2)
-        print(x3)
+        #print(x1)
+        #print(x2)
+        #print(x3)
         highcard=[]
-        print(winner)
+        #print(winner)
         winner.sort()
+        w=0
         if(len(winner)>0):
             w=winner[0]
         res2=input("do you want to check result")
@@ -224,7 +318,7 @@ while(True):
                             
 
 
-                print(highcard)
+                #print(highcard)
                 high=max(highcard)
                 if(x1[0][0]==high or x1[1][0]==high):
                     print("p1 is winner")
