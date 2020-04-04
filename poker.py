@@ -25,7 +25,19 @@ while(True):
     x3=p3[:2]
 
     def check(p,b,n):
+     z=0
+     for i in range(n):
+            if( b.count(b[i])>0):
+                z=1
+                b[i]=[random.randrange(2,15,1),random.randrange(1,5,1)]
+
+            elif(z==0):
+                break
+            
+        
+     
      while(True):
+            
         if((p[0] in b) or (p[1] in b)):
            for i in range(n):
               if(p[0]==b[i] or p[1]==b[i]):
