@@ -533,6 +533,7 @@ while(True):
                     status1=1
                 elif(rep1.count(rep1[1])==2):
                     status1=2
+
                 
                 print("p1 has two of a kind ")
                 tak=8
@@ -565,20 +566,20 @@ while(True):
 
 
 
-            if((rep1.count(rep1[0])==2 and rep1.count(rep1[1])==2)):
+            if((rep1[2:].count(rep1[0])==2 and rep1[2:].count(rep1[1])==2)):
                 print("p1 has two pair")
                 tp=7
                 flag1=7
                 winner.append(tp)
 
            
-            if((rep2.count(rep2[0])==2 and rep2.count(rep2[1])==2)):
+            if((rep2[2:].count(rep2[0])==2 and rep2[2:].count(rep2[1])==2)):
                 print("p2 has two pair")
                 tp=7
                 flag2=7
                 winner.append(tp)
 
-            if((rep3.count(rep3[0])==2 and rep3.count(rep3[1])==2)):
+            if((rep3[2:].count(rep3[0])==2 and rep3[2:].count(rep3[1])==2)):
                 print("p3 has two pair")
                 tp=7
                 flag3=7
