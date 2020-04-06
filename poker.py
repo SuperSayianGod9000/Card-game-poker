@@ -208,14 +208,33 @@ while(True):
         #print(x2)
         #print(x3)
         highcard=[]
+        decider=[]
         #print(winner)
         winner.sort()
         w=0
+
+
+        
         if(len(winner)>0):
             w=winner[0]
         res2=input("do you want to check result")
         if(res2=='yes'):
-          if(winner.count(w)==1 and len(winner)>0):
+          if(len(winner)==0):
+                        for i in range(2):
+                            highcard.append(x1[i][0])
+                            highcard.append(x2[i][0])
+                            highcard.append(x3[i][0])
+
+                        high=max(highcard)
+                        if(x1[0][0]==high or x1[1][0]==high):
+                            print("p1 is winner")
+
+                        elif(x2[0][0]==high or x2[1][0]==high):
+                            print("p2 is winner")
+
+                        elif(x3[0][0]==high or x3[1][0]==high):
+                            print("p3 is winner")
+          elif(winner.count(w)==1 and len(winner)>0):
             if(w==1):
                 if(flag1==1):
                     print("p1 is winner")
@@ -341,32 +360,48 @@ while(True):
                             
                             
 
-
+                
                 #print(highcard)
                 high=max(highcard)
-                if(x1[0][0]==high or x1[1][0]==high):
-                    print("p1 is winner")
-
-                elif(x2[0][0]==high or x2[1][0]==high):
-                    print("p2 is winner")
-
-                elif(x3[0][0]==high or x3[1][0]==high):
-                     print("p3 is winner")
-
-                elif(len(winner)==0):
-                     for i in range(2):
-                            highcard.append(x1[i][0])
-                            highcard.append(x2[i][0])
-                            highcard.append(x3[i][0])
-
-                     high=max(highcard)
-                     if(x1[0][0]==high or x1[1][0]==high):
+                if(highcard.count(high)==1 and len(winner)>0):
+                    if(x1[0][0]==high or x1[1][0]==high):
                         print("p1 is winner")
 
-                     elif(x2[0][0]==high or x2[1][0]==high):
+                    elif(x2[0][0]==high or x2[1][0]==high):
                         print("p2 is winner")
 
-                     elif(x3[0][0]==high or x3[1][0]==high):
+                    elif(x3[0][0]==high or x3[1][0]==high):
+                         print("p3 is winner")
+
+               
+
+                elif(highcard.count(high)>1 and len(winner)>0):
+                    if(status1==1 and flag1==w):
+                       decider.append(x1[1][0])
+
+                    if(status1==2 and flag1==w):
+                        decider.append(x1[0][0])
+
+                    if(status2==1 and flag2==w):
+                       decider.append(x2[1][0])
+
+                    if(status2==2 and flag2==w):
+                        decider.append(x2[0][0])
+
+                    if(status3==1 and flag3==w):
+                       decider.append(x3[1][0])
+
+                    if(status3==2 and flag3==w):
+                        decider.append(x3[0][0])
+
+                    top=max(decider)
+                    if(x1[0][0]==top or x1[1][0]==top):
+                        print("p1 is winner")
+
+                    elif(x2[0][0]==top or x2[1][0]==top):
+                        print("p2 is winner")
+
+                    elif(x3[0][0]==top or x3[1][0]==top):
                         print("p3 is winner")
                
 
@@ -398,6 +433,9 @@ while(True):
         rep1.sort()
         rep2.sort()
         rep3.sort()
+        print(rep1)
+        print(rep2)
+        print(rep3)
         check1=[]
         check2=[]
         check3=[]
@@ -430,20 +468,23 @@ while(True):
         
         res1=input("check sequence?")
         if(res1=='yes'):
-                if(len(check1)>=5):
+                if(len(check1)>=5 and check1[4]-check1[0]==4):
+                    print(check1)
                     print("p1 has straight")
                     
                     st=5
                     flag1=5
                     winner.append(st)
 
-                if(len(check2)>=5):
+                if(len(check2)>=5 and check2[4]-check2[0]==4):
+                    print(check2)
                     print("p2 has straight")
                     st=5
                     flag2=5
                     winner.append(st)
 
-                if(len(check3)>=5):
+                if(len(check3)>=5 and check3[4]-check3[0]==4):
+                    print(check3)
                     print("p3 has straight")
                     st=5
                     flag3=5
@@ -469,20 +510,20 @@ while(True):
 
 
 
-                if((len(check1)>=5) and (color1.count(color1[0])>=5)):
+                if((len(check1)>=5 and check1[4]-check1[0]==4) and (color1.count(color1[0])>=5)):
                    print("p1 has straight flush")
                    sf=1
                    flag1=1
                    winner.append(sf)
                    
 
-                if((len(check2)>=5) and (color2.count(color2[0])>=5)):
+                if((len(check2)>=5 and check2[4]-check2[0]==4) and (color2.count(color2[0])>=5)):
                    print("p2 has straight flush")
                    sf=1
                    flag2=1
                    winner.append(sf)
 
-                if((len(check3)>=5) and (color3.count(color3[0])>=5)):
+                if((len(check3)>=5 and check3[4]-check3[0]==4) and (color3.count(color3[0])>=5)):
                    print("p3 has straight flush")
                    sf=1
                    flag3=1
@@ -566,7 +607,7 @@ while(True):
 
 
 
-            if((rep1[2:].count(rep1[0])==2 and rep1[2:].count(rep1[1])==2)):
+            if((rep1[2:].count(rep1[0])==1 and rep1[2:].count(rep1[1])==1)):
                 print("p1 has two pair")
                 tp=7
                 flag1=7
