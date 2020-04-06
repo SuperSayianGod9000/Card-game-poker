@@ -106,7 +106,7 @@ while(True):
 
     def status(p1c,p2c,p3c):
         
-     x=int(input("Enter player number for viewing status"))
+     x=input("Enter player number for viewing status")
      check(p1,p2,2)
      check(p1,p3,2)
      check(p2,p1,2)
@@ -114,25 +114,31 @@ while(True):
      check(p3,p1,2)
      check(p3,p2,2)
 
-     if(x==1):
+     if(x=="1"):
+        print("p1")
         print(p1c)
         show(p1,2)
 
-     elif(x==2):
+     elif(x=="2"):
+        print("p2")
         print(p2c)
         show(p2,2)
 
-     elif(x==3):
+     elif(x=="3"):
+        print("p3")
         print(p3c)
         show(p3,n)
 
-     elif(x==4):
+     elif(x=="all"):
+         print("p1")
          print(p1c)
          #print(p1)
          show(p1,2)
+         print("p2")
          print(p2c)
          #print(p2)
          show(p2,2)
+         print("p3")
          print(p3c)
          #print(p3)
          show(p3,2) 
@@ -433,9 +439,7 @@ while(True):
         rep1.sort()
         rep2.sort()
         rep3.sort()
-        print(rep1)
-        print(rep2)
-        print(rep3)
+       
         check1=[]
         check2=[]
         check3=[]
@@ -469,7 +473,7 @@ while(True):
         res1=input("check sequence?")
         if(res1=='yes'):
                 if(len(check1)>=5 and check1[4]-check1[0]==4):
-                    print(check1)
+                    
                     print("p1 has straight")
                     
                     st=5
@@ -477,14 +481,14 @@ while(True):
                     winner.append(st)
 
                 if(len(check2)>=5 and check2[4]-check2[0]==4):
-                    print(check2)
+                    
                     print("p2 has straight")
                     st=5
                     flag2=5
                     winner.append(st)
 
                 if(len(check3)>=5 and check3[4]-check3[0]==4):
-                    print(check3)
+                    
                     print("p3 has straight")
                     st=5
                     flag3=5
